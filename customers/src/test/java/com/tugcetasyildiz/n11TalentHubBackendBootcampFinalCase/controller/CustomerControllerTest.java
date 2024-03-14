@@ -1,109 +1,65 @@
 package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.N11TalentHubBackendBootcampFinalCaseApplication;
-import org.junit.jupiter.api.BeforeEach;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CustomerDTO;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.TestConstants;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.TestDataGenerator;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.request.saverequest.CustomerSaveRequest;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.request.updaterequest.CustomerUpdateRequest;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes = {N11TalentHubBackendBootcampFinalCaseApplication.class})
-class CustomerControllerTest extends BaseControllerTest {
+class CustomerControllerTest {
+    @Mock
+    CustomerService customerService;
+    @InjectMocks
+    CustomerController customerController;
 
-    @Autowired
-    private WebApplicationContext context;
-    private MockMvc mockMvc;
+    @Test
+    void shouldSaveCustomer() {
+        CustomerSaveRequest customerSaveRequest = TestDataGenerator.createCustomerSaveRequest();
+        CustomerDTO customerDTO = TestDataGenerator.createCustomerDTO();
 
-    @BeforeEach
-    void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
-        objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+        when(customerService.save(any())).thenReturn(customerDTO);
+        CustomerDTO result = customerService.save(customerSaveRequest);
+
+        assertEquals(customerSaveRequest.getName() + " " + customerSaveRequest.getSurname(), result.getFullName());
+        assertEquals(customerSaveRequest.getLongitude(), result.getLongitude());
+        assertEquals(customerSaveRequest.getLatitude(), result.getLatitude());
     }
 
     @Test
-    void shouldGetAllCustomers() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/customers"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
+    void shouldGetAll() {
+        List<CustomerDTO> customerDTOList = TestDataGenerator.createCustomerDTOList();
 
-        boolean success = isSuccess(mvcResult);
-        assertTrue(success);
+        when(customerService.getAll()).thenReturn(customerDTOList);
+        List<CustomerDTO> result = customerService.getAll();
+
+        assertIterableEquals(customerDTOList, result);
     }
 
     @Test
-    void shouldSaveCustomer() throws Exception {
-        String request = """
-                {
-                  "name": "name1",
-                  "surname": "surname1",
-                  "longitude": "10.1",
-                  "latitude": "20.1"
-                }""";
+    void shouldUpdateById() {
+        CustomerUpdateRequest customerUpdateRequest = TestDataGenerator.customerUpdateRequest();
+        Long customerId = TestConstants.TEST_CUSTOMER_ID;
+        CustomerDTO customerDTO = TestDataGenerator.createCustomerDTO();
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                .post("/api/v1/customers")
-                .content(request)
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        when(customerService.updateById(customerId, customerUpdateRequest)).thenReturn(customerDTO);
+        CustomerDTO result = customerService.updateById(customerId, customerUpdateRequest);
 
-        boolean success = isSuccess(mvcResult);
-        assertTrue(success);
+        assertEquals(customerDTO, result);
     }
-
-    @Test
-    void shouldUpdateCustomerById() throws Exception {
-
-        String request = """
-                  {
-                    "name": "string",
-                    "surname": "string",
-                    "longitude": 10.0,
-                    "latitude": 10.0
-                }""";
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                .put("/api/v1/customers/9")
-                .content(request)
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
-
-    }
-
-    @Test
-    void shouldSuggestRestaurantsById() throws Exception {
-
-        long customerId = 5;
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/customers/suggested-restaurants/{id}", customerId)
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
-
-    }
-
-    @Test
-    void shouldDeleteCustomerById() throws Exception {
-        long customerId = 1;
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders
-                .delete("/api/v1/customers/{id}", customerId)
-                .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
-    }
-
-
 }

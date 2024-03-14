@@ -2,7 +2,6 @@ package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.Customer;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.enums.CommentScoreConverter;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.enums.EnumScore;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.BaseEntity;
 import jakarta.persistence.*;
@@ -38,5 +37,7 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "CUSTOMER_ID",  nullable = false)
     private Customer customer;
 
+    @Column(name = "RESTAURANT_ID",  nullable = false)
     private String restaurantId;
+
 }

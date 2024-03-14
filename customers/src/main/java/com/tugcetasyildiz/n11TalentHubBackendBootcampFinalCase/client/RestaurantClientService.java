@@ -38,7 +38,7 @@ public class RestaurantClientService {
         }
     }
 
-    public void updateCommentsAndScore(String restaurantId, ArrayList<CommentRestaurantResponseDTO> commentDTOList) {
+    public void updateRestaurantByCommentsAndScore(String restaurantId, List<CommentRestaurantResponseDTO> commentDTOList) {
         try {
             restaurantClient.updateCommentsAndScore(restaurantId,commentDTOList);
         } catch (Exception e) {

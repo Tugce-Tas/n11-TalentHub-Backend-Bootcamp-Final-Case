@@ -61,7 +61,7 @@ public class CommentService extends BaseService<
         comment.setCustomer(customer);
         getRepository().save(comment);
 
-        updateCommentsAndScore(comment.getRestaurantId());
+        updateRestaurantByCommentsAndScore(comment.getRestaurantId());
 
         return getMapper().convertToDTO(comment);
     }
@@ -76,20 +76,18 @@ public class CommentService extends BaseService<
         comment.setScore(request.getScore());
         commentRepository.save(comment);
 
-        updateCommentsAndScore(comment.getRestaurantId());
+        updateRestaurantByCommentsAndScore(comment.getRestaurantId());
 
         return getMapper().convertToDTO(comment);
     }
 
-    public void updateCommentsAndScore(String restaurantId) {
-        restaurantClientService.updateCommentsAndScore(restaurantId, getAllByRestaurantId(restaurantId));
+    public void updateRestaurantByCommentsAndScore(String restaurantId) {
+        restaurantClientService.updateRestaurantByCommentsAndScore(restaurantId, getAllByRestaurantId(restaurantId));
     }
 
-    public ArrayList<CommentRestaurantResponseDTO> getAllByRestaurantId(String restaurantId) {
+    public List<CommentRestaurantResponseDTO> getAllByRestaurantId(String restaurantId) {
         List<Comment> allByRestaurantId = commentRepository.findAllByRestaurantId(restaurantId);
-        List<CommentRestaurantResponseDTO> allDTOSByRestaurantId = CommentMapper.INSTANCE.convertToCommentDTOsForRestaurant(allByRestaurantId);
+        return CommentMapper.INSTANCE.convertToCommentDTOsForRestaurant(allByRestaurantId);
 
-        ArrayList<CommentRestaurantResponseDTO> arrayList = new ArrayList<>(allDTOSByRestaurantId);
-        return arrayList;
     }
 }

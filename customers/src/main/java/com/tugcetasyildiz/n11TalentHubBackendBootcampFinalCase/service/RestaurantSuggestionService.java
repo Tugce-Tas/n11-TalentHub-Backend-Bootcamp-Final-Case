@@ -5,6 +5,7 @@ import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client.model.Rest
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dao.CustomerRepository;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.Customer;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCommentIdException;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCustomerIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.message.EnumErrorMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,10 +40,10 @@ public class RestaurantSuggestionService {
                 .toList();
     }
 
-    private List<RestaurantDTO> getRestaurantsCloserThan(Long customerId, Double maxDistance) {
+    protected List<RestaurantDTO> getRestaurantsCloserThan(Long customerId, Double maxDistance) {
         Customer customer = customerRepository.findById(customerId).orElse(null);
         if (Objects.isNull(customer)) {
-            throw new RuntimeException("Customer is not found!");
+            throw new InvalidCustomerIdException(EnumErrorMessage.INVALID_CUSTOMER_ID);
         }
         List<RestaurantDTO> restaurantList = restaurantClientService.getAllRestaurants();
 

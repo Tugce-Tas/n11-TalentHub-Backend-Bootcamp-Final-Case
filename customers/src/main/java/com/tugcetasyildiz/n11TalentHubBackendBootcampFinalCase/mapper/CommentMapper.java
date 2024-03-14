@@ -1,6 +1,5 @@
 package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.mapper;
 
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client.RestaurantClientService;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentDTO;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentRestaurantResponseDTO;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.entity.Comment;
@@ -20,9 +19,7 @@ public interface CommentMapper extends BaseMapper<Comment, CommentDTO, CommentSa
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
     @Mapping(target = "customerName", expression = "java(comment.getCustomer().getName() + ' ' + comment.getCustomer().getSurname())")
-    //@Mapping(target = "restaurantName", expression = "java(comment.getRestaurant().getName())")
     CommentDTO convertToDTO(Comment comment);
-
 
     List<CommentDTO> convertToDTOs(List<Comment> commentList);
 
