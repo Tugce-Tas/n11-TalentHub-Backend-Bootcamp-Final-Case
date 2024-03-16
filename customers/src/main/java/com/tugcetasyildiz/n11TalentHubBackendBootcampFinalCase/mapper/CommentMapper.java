@@ -19,10 +19,13 @@ public interface CommentMapper extends BaseMapper<Comment, CommentDTO, CommentSa
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
 
     @Mapping(target = "customerName", expression = "java(comment.getCustomer().getName() + ' ' + comment.getCustomer().getSurname())")
+    @Mapping(target = "customerId", expression = "java(comment.getCustomer().getId())")
     CommentDTO convertToDTO(Comment comment);
 
     List<CommentDTO> convertToDTOs(List<Comment> commentList);
 
+    @Mapping(target = "customerName", expression = "java(comment.getCustomer().getName() + ' ' + comment.getCustomer().getSurname())")
+    @Mapping(target = "customerId", expression = "java(comment.getCustomer().getId())")
     CommentRestaurantResponseDTO convertToCommentDTOForRestaurant(Comment comment);
 
     List<CommentRestaurantResponseDTO> convertToCommentDTOsForRestaurant(List<Comment> comment);

@@ -11,6 +11,7 @@ import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.entity.Comment;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCustomerIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidRestaurantIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCommentIdException;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.ItemNotFoundException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.message.EnumErrorMessage;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.BaseService;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.mapper.CommentMapper;
@@ -80,6 +81,18 @@ public class CommentService extends BaseService<
 
         return getMapper().convertToDTO(comment);
     }
+    @Override
+    public void deleteById(Long commentId) {
+        Comment comment = getRepository().findById(commentId).orElse(null);
+
+        if (Objects.isNull(comment)) {
+            throw new ItemNotFoundException(EnumErrorMessage.ITEM_NOT_FOUND);
+        }
+        getRepository().deleteById(commentId);
+        String restaurantId = comment.getRestaurantId();
+        restaurantClientService.updateRestaurantByCommentsAndScore(restaurantId, getAllByRestaurantId(restaurantId));
+    }
+
 
     public void updateRestaurantByCommentsAndScore(String restaurantId) {
         restaurantClientService.updateRestaurantByCommentsAndScore(restaurantId, getAllByRestaurantId(restaurantId));
@@ -88,6 +101,5 @@ public class CommentService extends BaseService<
     public List<CommentRestaurantResponseDTO> getAllByRestaurantId(String restaurantId) {
         List<Comment> allByRestaurantId = commentRepository.findAllByRestaurantId(restaurantId);
         return CommentMapper.INSTANCE.convertToCommentDTOsForRestaurant(allByRestaurantId);
-
     }
 }

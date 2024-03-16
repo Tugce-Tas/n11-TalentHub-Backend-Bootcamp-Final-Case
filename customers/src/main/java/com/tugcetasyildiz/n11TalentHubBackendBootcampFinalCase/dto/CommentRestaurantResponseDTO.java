@@ -8,6 +8,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CommentRestaurantResponseDTO extends BaseDTO {
+    private Long id;
     private String text;
     private EnumScore score;
+    private Long customerId;
+    private String customerName;
+    private String restaurantId;
 }

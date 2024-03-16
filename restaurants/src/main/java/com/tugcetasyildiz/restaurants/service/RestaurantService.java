@@ -4,6 +4,8 @@ import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
 import com.tugcetasyildiz.restaurants.dao.RestaurantRepository;
 import com.tugcetasyildiz.restaurants.dto.RestaurantDTO;
 import com.tugcetasyildiz.restaurants.entity.Restaurant;
+import com.tugcetasyildiz.restaurants.exceptionhandling.exception.InvalidRestaurantIdException;
+import com.tugcetasyildiz.restaurants.exceptionhandling.message.EnumErrorMessage;
 import com.tugcetasyildiz.restaurants.mapper.RestaurantMapper;
 import com.tugcetasyildiz.restaurants.request.RestaurantSaveRequest;
 import com.tugcetasyildiz.restaurants.request.RestaurantUpdateRequest;
@@ -34,7 +36,7 @@ public class RestaurantService {
     public RestaurantDTO updateById(String restaurantId, RestaurantUpdateRequest updateRequest) {
         Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
         if (Objects.isNull(restaurant)) {
-            throw new RuntimeException("Restaurant is not found!");
+            throw new InvalidRestaurantIdException(EnumErrorMessage.INVALID_RESTAURANT_ID);
         }
         restaurant.setName(updateRequest.getName());
         restaurant.setLongitude(updateRequest.getLongitude());
@@ -48,7 +50,7 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
 
         if (Objects.isNull(restaurant)) {
-            throw new RuntimeException("Restaurant is not found!");
+            throw new InvalidRestaurantIdException(EnumErrorMessage.INVALID_RESTAURANT_ID);
         }
         restaurantRepository.deleteById(restaurantId);
     }
