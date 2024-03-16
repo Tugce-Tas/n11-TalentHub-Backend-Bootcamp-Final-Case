@@ -12,7 +12,7 @@ function NavbarContent() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link as={Link} to={{pathname : "/customers" }}>Customers</Nav.Link>
-            <Nav.Link as={Link} to={{pathname : "/comments" }}>Comments</Nav.Link>
+           
             <Nav.Link as={Link} to={{pathname : "/restaurants" }}>Restaurants</Nav.Link>
           </Nav>
         </Container>

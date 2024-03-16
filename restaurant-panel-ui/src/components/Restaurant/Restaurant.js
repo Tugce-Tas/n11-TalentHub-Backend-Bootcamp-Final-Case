@@ -4,7 +4,6 @@ import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import RestaurantDetail from "./RestaurantDetail";
 import Button from "react-bootstrap/Button";
-
 import { Link } from "react-router-dom";
 
 function Restaurant(props) {
@@ -13,7 +12,7 @@ function Restaurant(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const [isSent, setIsSent] = useState(false);
-  const [commentsVisible, setCommentsVisible] = useState(false);
+  const [commentsVisible, setCommentsVisible] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -37,9 +36,7 @@ function Restaurant(props) {
     setIsSent(false);
   };
 
-function ToDetails(restaurantId) {
-<RestaurantDetail restaurantId={restaurantId}/>
-}
+
 
   return (
     <div className="restaurant">
@@ -62,8 +59,8 @@ function ToDetails(restaurantId) {
             </p>
             <p>Average Score: {averageScore}</p>
           </Card.Text>
-          <Link to={"/restaurants/" + restaurantId} variant="primary">
-            <Button> İncele</Button>
+          <Link to={"/restaurants/" + restaurantId}>
+            <Button  className="btn-grad">Details</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -72,15 +69,3 @@ function ToDetails(restaurantId) {
 }
 
 export default Restaurant;
-
-// const getRestaurantById = () => {
-//   fetch("http://localhost:8089/api/v1/restaurants/" + restaurantId, {
-//     method: "GET",
-//   })
-//     .then((res) => res.json)
-//     .catch((err) => console.log(err));
-// };
-// const handleDetailClick = () => {
-//   getRestaurantById();
-//   console.log(latitude, name, longitude, restaurantId);
-// };

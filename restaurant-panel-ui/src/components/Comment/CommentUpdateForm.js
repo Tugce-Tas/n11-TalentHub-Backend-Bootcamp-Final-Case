@@ -24,8 +24,8 @@ function CommentUpdateForm(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        text: newText ,
-        score: newScore
+        text: newText,
+        score: newScore,
       }),
     })
       .then((res) => res.json())
@@ -62,31 +62,34 @@ function CommentUpdateForm(props) {
           <Alert.Heading>Comment successfully updated!</Alert.Heading>
         </Alert>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Text</InputGroup.Text>
-          <Form.Control
-           // defaultValue={text}
-           placeholder="text..."
-            aria-label="text"
-            onChange={(i) => handleText(i.target.value)}
-          />
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Score</InputGroup.Text>
-          <Form.Select
-            aria-label="score"
-            onChange={(i) => handleScore(i.target.value)}
-          >
-            <option>Select score...</option>
-            <option value="ONE">ONE</option>
-            <option value="TWO">TWO</option>
-            <option value="THREE">THREE</option>
-            <option value="FOUR">FOUR</option>
-            <option value="FIVE">FIVE</option>
-          </Form.Select>
-        </InputGroup>
+        <Row>
+          <Col sm={9}>
+            <FloatingLabel controlId="floatingTextarea2" label="Comments">
+              <Form.Control
+                as="input"
+                placeholder="Leave a comment here"
+                style={{ height: "100px" }}
+                onChange={(i) => handleText(i.target.value)}
+              />
+            </FloatingLabel>
+          </Col>
+          <Col sm={3}>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Score</InputGroup.Text>
+              <Form.Select
+                aria-label="score"
+                onChange={(i) => handleScore(i.target.value)}
+              >
+                <option>Select score...</option>
+                <option value="ONE">ONE</option>
+                <option value="TWO">TWO</option>
+                <option value="THREE">THREE</option>
+                <option value="FOUR">FOUR</option>
+                <option value="FIVE">FIVE</option>
+              </Form.Select>
+            </InputGroup>
+          </Col>
 
-        <Row className="g-2">
           <Col sm={2}>
             <Button variant="primary" onClick={handleUpdate}>
               Güncelle

@@ -5,29 +5,38 @@
     border-width: 2px;
     width:100%;
     display: block;
-    background-color: bisque;
+    background-color: rgb(241, 240, 238);
 }
 .comment-update{
     margin: 20px;
     padding: 15px;
     border-color: black;
     border-width: 2px;
-    width:50%;
+    width:100%;
     display: block;
-    background-color: rgb(224, 254, 255);
+    background-color: rgb(247, 255, 255);
 }
 
 .comment-form{
-    margin: 20px;
-    padding: 15px;
+    margin: 30px auto 50px;
+    padding: 50px;
     border-color: black;
     border-width: 2px;
     width:100%;
     display: block;
-    background-color: rgb(78, 40, 80);
+    background-color: rgb(240, 240, 240);
 }
 
 .container{
     width: 80%; 
     display: block; 
   }
+
+.comment-save-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 5px auto;
+}
+

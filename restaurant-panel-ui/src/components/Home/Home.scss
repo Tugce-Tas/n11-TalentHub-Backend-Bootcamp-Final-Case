@@ -1,5 +1,15 @@
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+
+
+.home{
+    background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+    url("https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg");
+    background-size: cover; /* Resmi sayfa boyutuna sığdır */
+    background-repeat: no-repeat; /* Resmi tekrar etme */
+    
+}
+
+.full-screen{
+    height: calc(100vh - 50px);
+    margin: 0px;
 }

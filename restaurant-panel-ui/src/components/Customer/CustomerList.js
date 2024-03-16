@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Customer.scss";
 import Customer from "./Customer";
 import CustomerForm from "./CustomerForm";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -38,10 +37,24 @@ function CustomerList() {
           <Col xs={12} md={3}>
             <CustomerForm />
           </Col>
+
           <Col xs={12} md={9}>
+            <Row style={{ fontSize: "16pt", fontWeight:"bold", padding:"20px auto "}}>
+              <Col sm={6}>Kullanıcı Adı</Col>
+
+              <Col sm={2}>Longitude</Col>
+
+              <Col sm={2}>Latitude</Col>
+
+              <Col sm={1}>Update</Col>
+
+              <Col sm={1}>Delete</Col>
+            </Row>
+
             {customerList.map((customer) => (
               <div key={customer.id}>
                 <Customer
+                  customerId={customer.id}
                   fullName={customer.fullName}
                   longitude={customer.longitude}
                   latitude={customer.latitude}

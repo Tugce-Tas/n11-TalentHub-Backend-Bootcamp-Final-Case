@@ -5,11 +5,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
-
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 import InputGroup from "react-bootstrap/InputGroup";
 
 function CommentForm(props) {
-  const {restaurantId} = props;
+  const { restaurantId } = props;
   const [score, setScore] = useState("");
   const [text, setText] = useState("");
   const [customerId, setCustomerId] = useState("");
@@ -26,12 +26,11 @@ function CommentForm(props) {
         score: score,
         customerId: customerId,
         restaurantId: restaurantId,
-      }), 
+      }),
     })
       .then((res) => res.json)
       .catch((err) => console.log(err));
   };
-
 
   const handleSubmit = () => {
     saveComment();
@@ -53,7 +52,6 @@ function CommentForm(props) {
     setCustomerId(value);
     setIsSent(false);
   };
-  
 
   const handleClose = () => {
     setIsSent(false);
@@ -71,42 +69,50 @@ function CommentForm(props) {
           <Alert.Heading>Comment successfully registered!</Alert.Heading>
         </Alert>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Text</InputGroup.Text>
-          <Form.Control
-            placeholder="text..."
-            aria-label="text"
-            onChange={(i) => handleText(i.target.value)}
-            value={text}
-          />
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">Score</InputGroup.Text>
-          <Form.Select
-          aria-label="score"
-          onChange={(i) => handleScore(i.target.value)}
-          value={score}>
-            <option>select...</option>
-            <option value="1">ONE</option>
-            <option value="2">TWO</option>
-            <option value="3">THREE</option>
-            <option value="4">FOUR</option>
-            <option value="5">FIVE</option>
-          </Form.Select>
-        </InputGroup>
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">CustomerId</InputGroup.Text>
-          <Form.Control
-            placeholder="customerId..."
-            aria-label="customerId"
-            onChange={(i) => handleCustomerId(i.target.value)}
-            value={customerId}
-          />
-        </InputGroup>
+        <Row>
+          <Col sm={8}>
+            <FloatingLabel controlId="floatingTextarea2" label="Comments">
+              <Form.Control
+                as="input"
+                placeholder="Leave a comment here"
+                style={{ height: "110px" }}
+                onChange={(i) => handleText(i.target.value)}
+              />
+            </FloatingLabel>
+          </Col>
+
+          <Col sm={4}>
+            <Col sm={12}>
+              <FloatingLabel controlId="floatingTextarea2" label="CustomerId">
+                <Form.Control
+                  as="input"
+                  style={{ height: "15px", marginBottom: "12px" }}
+                  onChange={(i) => handleCustomerId(i.target.value)}
+                />
+              </FloatingLabel>
+            </Col>
+            <Col sm={12}>
+              <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">Score</InputGroup.Text>
+                <Form.Select
+                  aria-label="score"
+                  onChange={(i) => handleScore(i.target.value)}
+                >
+                  <option>Select score...</option>
+                  <option value="ONE">ONE</option>
+                  <option value="TWO">TWO</option>
+                  <option value="THREE">THREE</option>
+                  <option value="FOUR">FOUR</option>
+                  <option value="FIVE">FIVE</option>
+                </Form.Select>
+              </InputGroup>
+            </Col>
+          </Col>
+        </Row>
 
         <Row className="g-2">
-          <Col sm={2}>
-            <Button variant="primary" onClick={handleSubmit}>
+          <Col sm={2} className="comment-save-button">
+            <Button className="comment-save-button" variant="primary" onClick={handleSubmit}>
               Kaydet
             </Button>
           </Col>

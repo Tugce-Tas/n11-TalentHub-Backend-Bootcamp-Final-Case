@@ -65,7 +65,6 @@ function CustomerForm(props) {
     setIsSent(false);
   };
 
-
   return (
     <div className="customer">
       <>

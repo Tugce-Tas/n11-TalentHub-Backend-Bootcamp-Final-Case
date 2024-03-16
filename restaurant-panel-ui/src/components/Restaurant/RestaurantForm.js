@@ -97,7 +97,7 @@ function RestaurantForm(props) {
 
         <Row className="g-2">
           <Col sm={2}>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button className="btn-grad " variant="primary" onClick={handleSubmit}>
               Kaydet
             </Button>
           </Col>

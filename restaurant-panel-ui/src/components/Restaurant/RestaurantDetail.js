@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "./Restaurant.scss"; 
+import { Link, useParams } from "react-router-dom";
+import "./Restaurant.scss";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Comment from "../Comment/Comment";
 import CommentForm from "../Comment/CommentForm";
-import CommentUpdateForm from "../Comment/CommentUpdateForm";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
+import RestaurantUpdateForm from "./RestaurantUpdateForm";
 
 function RestaurantDetail(props) {
-  const {restaurantId} = props;
+  const { restaurantId } = props;
   // const {restaurantId, name, longitude, latitude, averageScore} = props;
   // const {restaurantId} = props.restaurantId;
-  // const {restaurantId} = useParams() 
+  // const {restaurantId} = useParams()
   const [name, setName] = useState("");
   const [longitude, setLongitude] = useState("");
   const [latitude, setLatitude] = useState("");
   const [averageScore, setAverageScore] = useState("");
+  const [commentList, setCommentList] = useState([]);
+  const [updateFormVisible, setUpdateFormVisible] = useState(false);
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [commentList, setCommentList] = useState([]);
   const [isSent, setIsSent] = useState(false);
-  const [commentsVisible, setCommentsVisible] = useState(false);
-  
+  const [commentsVisible, setCommentsVisible] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8089/api/v1/restaurants/" + restaurantId, {
@@ -40,7 +40,8 @@ function RestaurantDetail(props) {
           setLongitude(result.longitude);
           setLatitude(result.latitude);
           setAverageScore(result.averageScore);
-          console.log(result)
+          setCommentList(result.commentList);
+          console.log(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -65,6 +66,10 @@ function RestaurantDetail(props) {
     setCommentsVisible(!commentsVisible);
   };
 
+  const handleUpdateFormToggle = () => {
+    setUpdateFormVisible(!updateFormVisible);
+  };
+
   return (
     <div className="restaurant">
       <Alert variant="success" show={isSent} onClose={handleClose} dismissible>
@@ -72,18 +77,6 @@ function RestaurantDetail(props) {
       </Alert>
 
       <Container>
-        {/* <Card className="bg-dark text-white">
-      <Card.Img src="https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Card image" />
-      <Card.ImgOverlay>
-        <Card.Title>Card title</Card.Title>
-        <Card.Text>
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </Card.Text>
-        <Card.Text>Last updated 3 mins ago</Card.Text>
-      </Card.ImgOverlay>
-    </Card> */}
-
         <Row>
           <Col sm={6}>
             <Card.Img
@@ -92,42 +85,74 @@ function RestaurantDetail(props) {
             />
           </Col>
 
-          <Col sm={6}>
-            <Col sm={2}>{name}</Col>
-            <Col sm={2}>Longitude: {longitude}</Col>
-            <Col sm={2}>Latitude: {latitude}</Col>
-            <Col sm={2}>Average Score: {averageScore}</Col>
-            <Col sm={2}>
-              <Button variant="outline-primary">Güncelle</Button>
-            </Col>
-            <Col sm={1}>
-              <Button variant="outline-secondary" onClick={deleteRestaurant}>
-                Sil
-              </Button>
-            </Col>
+          <Col sm={6} style={{ backgroundColor: "white" }}>
+            <h1>{name}</h1>
+
+            <h5>Longitude: {longitude}</h5>
+            <h5>Latitude: {latitude}</h5>
+            <h5>Average Score: {averageScore}</h5>
+
+            <Button
+              className="restaurant-form-button"
+              variant="outline-primary"
+              onClick={handleUpdateFormToggle}
+            >
+              <h4>
+                <i class="fa-regular fa-pen-to-square "></i>
+                Update
+              </h4>
+            </Button>
+
+            <Button
+              className="restaurant-form-button"
+              variant="outline-secondary"
+              onClick={deleteRestaurant}
+            >
+              <h4>
+                <i class="fa-regular fa-trash-can button"></i> Delete
+              </h4>
+            </Button>
           </Col>
+          
+            <Col sm={12} style={{marginTop:"30px"}}>
+            {updateFormVisible && (
+              <RestaurantUpdateForm
+                restaurantId={restaurantId}
+                name={name}
+                latitude={latitude}
+                longitude={longitude}
+              />
+            )}</Col>
+
         </Row>
+        <br></br>
+        <hr></hr>
         <Row>
-          <Button variant="outline-secondary" onClick={handleCommentsToggle}>
-            {commentsVisible ? "Yorumları Gizle" : "Yorumları Göster"}
-          </Button>
+          <div className="rest-comment-title">
+            <h4><Link variant="outline-secondary" onClick={handleCommentsToggle}>
+                {commentsVisible ? "Yorumları Gizle" : "Yorumları Göster"}
+              </Link></h4>
+          </div>
           {error ? (
             <div>Error: {error.message}</div>
           ) : commentsVisible && isLoaded ? (
-            <>
-              {commentList.map((comment) => (
-                <div key={comment.id}>
-                  <Comment
-                    restaurantId={comment.restaurantId}
-                    customerName={comment.customerName}
-                    commentId={comment.id}
-                    text={comment.text}
-                    score={comment.score}
-                  />
-                </div>
-              ))}
+            commentList !== null ? (
+              <>
               <CommentForm restaurantId={restaurantId}></CommentForm>
-            </>
+                {commentList.map((unparsedComment) => (
+                  <div key={unparsedComment.id}>
+                    <Comment unparsedComment={unparsedComment} />
+                  </div>
+                ))}
+                
+              </>
+            ) : (
+              <>
+                <div style={{margin:"50px 0px"}}>No comments yet. Be the first to comment...</div>
+                <br></br>
+                <CommentForm restaurantId={restaurantId}></CommentForm>
+              </>
+            )
           ) : (
             <div></div>
           )}
@@ -136,5 +161,4 @@ function RestaurantDetail(props) {
     </div>
   );
 }
-
 export default RestaurantDetail;

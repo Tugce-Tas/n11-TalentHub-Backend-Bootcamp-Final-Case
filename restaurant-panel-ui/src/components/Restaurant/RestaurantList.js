@@ -34,7 +34,6 @@ function ResturantList() {
   } else {
     console.log(restaurantList);
 
-    
     return (
       <div className="container">
         <Row>
