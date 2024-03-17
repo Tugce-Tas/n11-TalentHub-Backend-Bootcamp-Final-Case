@@ -10,7 +10,6 @@ function ResturantList() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [restaurantList, setRestaurantList] = useState([]);
-  const [custom, setCustom] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8089/api/v1/restaurants")
@@ -37,6 +36,7 @@ function ResturantList() {
     return <div>Loading...</div>;
   } else {
     console.log(restaurantList);
+    
 
     return (
       <div className="container">

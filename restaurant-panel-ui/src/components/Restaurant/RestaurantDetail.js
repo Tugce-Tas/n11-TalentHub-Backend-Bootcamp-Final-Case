@@ -70,6 +70,9 @@ function RestaurantDetail(props) {
     setUpdateFormVisible(!updateFormVisible);
   };
 
+
+console.log(commentList);
+
   return (
     <div className="restaurant">
       <Alert variant="success" show={isSent} onClose={handleClose} dismissible>
@@ -122,7 +125,6 @@ function RestaurantDetail(props) {
             )}
           </Col>
         </Row>
-        <br></br>
         <hr></hr>
         <Row>
           <div className="restaurant-comment-title">

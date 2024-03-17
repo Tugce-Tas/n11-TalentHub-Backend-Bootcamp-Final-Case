@@ -24,7 +24,7 @@ function CommentForm(props) {
       body: JSON.stringify({
         text: text,
         score: score,
-        customerId: customerId,
+        customerId: customerId, 
         restaurantId: restaurantId,
       }),
     })

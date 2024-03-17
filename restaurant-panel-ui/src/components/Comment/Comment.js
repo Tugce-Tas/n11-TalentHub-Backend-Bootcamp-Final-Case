@@ -17,20 +17,21 @@ function Comment(props) {
   const [restaurantId, setRestaurantId] = useState("");
   const [commentId, setCommentId] = useState("");
   const [updateFormVisible, setUpdateFormVisible] = useState(false);
+  const [customerId, setCustomerId]  = useState("");
 
   const parseComment = () => {
     let unparsedCommentStr = JSON.stringify(unparsedComment);
     let startIndex = unparsedComment.indexOf("(") + 2;
     let endIndex = unparsedComment.indexOf(")");
-    let commentSliced = unparsedCommentStr.slice(startIndex, endIndex);
+    let commentSliced = unparsedCommentStr.slice(startIndex, endIndex +1);
     let commentArray = commentSliced.split(",");
     let stringComment = "{";
-
+    console.log(commentSliced)
     commentArray.forEach((comment) => {
       let commentObjects = comment.split("=");
       let key = commentObjects[0].trim();
       let value = commentObjects[1].trim();
-      if (key === "id") {
+      if (key === "id" || key === "customerId"  ) {
         stringComment += '"' + key + '":' + value + ",";
       } else {
         stringComment += '"' + key + '":' + '"' + value + '"' + ",";
@@ -42,10 +43,12 @@ function Comment(props) {
     return JSON.parse(stringComment);
   };
 
-  let comment = parseComment();
+  let comment = unparsedComment ? parseComment() : null;
+
   useEffect(() => {
     setScore(comment.score);
     setCommentId(comment.id);
+    setCustomerId(comment.customerId);
     setCustomerName(comment.customerName);
     setRestaurantId(comment.restaurantId);
     setText(comment.text);
@@ -83,9 +86,7 @@ function Comment(props) {
           <Card.Title style={{ margin: "20px 0" }}>{customerName}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{score}</Card.Subtitle>
           <Card.Text>
-            {text} Some quick example text to build on the card title and make
-            up the bulk of the card's content.Some quick example text to build
-            on the card title and make up the bulk of the card's content.
+            {text} 
           </Card.Text>
           <Card.Link href="#">
             <Button variant="outline-primary" onClick={handleUpdateFormToggle}>
