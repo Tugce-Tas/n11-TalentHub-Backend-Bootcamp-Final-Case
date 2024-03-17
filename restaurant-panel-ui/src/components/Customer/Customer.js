@@ -12,7 +12,6 @@ function Customer(props) {
   const [updateFormVisible, setUpdateFormVisible] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-
   const deleteCustomer = () => {
     fetch("http://localhost:8080/api/v1/customers/" + customerId, {
       method: "DELETE",
@@ -28,12 +27,9 @@ function Customer(props) {
     setUpdateFormVisible(!updateFormVisible);
   };
 
-
-
   return (
     <div className="customer">
-
-<Alert variant="success" show={isSent} onClose={handleClose} dismissible>
+      <Alert variant="success" show={isSent} onClose={handleClose} dismissible>
         <Alert.Heading>Restaurant successfully registered!</Alert.Heading>
       </Alert>
       <Row>
@@ -73,13 +69,9 @@ function Customer(props) {
           </Card>
         </Col>
 
-        <Col sm={12} style={{marginTop:"30px"}}>
-            {updateFormVisible && (
-              <CustomerUpdateForm
-                customerId={customerId}
-              />
-            )}</Col>
-
+        <Col sm={12} style={{ marginTop: "30px" }}>
+          {updateFormVisible && <CustomerUpdateForm customerId={customerId} />}
+        </Col>
       </Row>
     </div>
   );

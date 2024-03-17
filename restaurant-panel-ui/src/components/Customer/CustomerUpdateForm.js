@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 
 function CustomerUpdateForm(props) {
-  const {customerId} = props;
+  const { customerId } = props;
   const [newName, setName] = useState("");
   const [newSurname, setSurname] = useState("");
   const [newLongitude, setLongitude] = useState("");
@@ -69,7 +69,7 @@ function CustomerUpdateForm(props) {
           <Alert.Heading>Customer successfully updated!</Alert.Heading>
         </Alert>
 
-            <Row style={{backgroundColor:"CaptionText", padding:"10px"}}>
+        <Row style={{ backgroundColor: "aliceblue", padding: "10px" }}>
           <Col sm={4}>
             <FloatingLabel
               controlId="name"
@@ -111,8 +111,12 @@ function CustomerUpdateForm(props) {
           </Col>
 
           <Col sm={1}>
-            <Button style={{height:"55px", width:"100%"}} variant="primary" onClick={handleUpdate} >
-            <i class="fa-solid fa-check" ></i>
+            <Button
+              style={{ height: "55px", width: "100%" }}
+              variant="primary"
+              onClick={handleUpdate}
+            >
+              <i class="fa-solid fa-check"></i>
             </Button>
           </Col>
         </Row>

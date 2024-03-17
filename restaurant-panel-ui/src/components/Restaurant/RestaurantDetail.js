@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Restaurant.scss";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -97,24 +97,21 @@ function RestaurantDetail(props) {
               variant="outline-primary"
               onClick={handleUpdateFormToggle}
             >
-              <h4>
-                <i class="fa-regular fa-pen-to-square "></i>
-                Update
-              </h4>
+              <i class="fa-regular fa-pen-to-square detail-button "></i>
+              <span style={{ fontSize: "16pt" }}>Update</span>
             </Button>
 
             <Button
               className="restaurant-form-button"
-              variant="outline-secondary"
+              variant="outline-danger"
               onClick={deleteRestaurant}
             >
-              <h4>
-                <i class="fa-regular fa-trash-can button"></i> Delete
-              </h4>
+              <i class="fa-regular fa-trash-can button detail-button"></i>{" "}
+              <span style={{ fontSize: "16pt" }}>Delete</span>
             </Button>
           </Col>
-          
-            <Col sm={12} style={{marginTop:"30px"}}>
+
+          <Col sm={12} style={{ marginTop: "30px" }}>
             {updateFormVisible && (
               <RestaurantUpdateForm
                 restaurantId={restaurantId}
@@ -122,33 +119,36 @@ function RestaurantDetail(props) {
                 latitude={latitude}
                 longitude={longitude}
               />
-            )}</Col>
-
+            )}
+          </Col>
         </Row>
         <br></br>
         <hr></hr>
         <Row>
-          <div className="rest-comment-title">
-            <h4><Link variant="outline-secondary" onClick={handleCommentsToggle}>
-                {commentsVisible ? "Yorumları Gizle" : "Yorumları Göster"}
-              </Link></h4>
+          <div className="restaurant-comment-title">
+            <h6>
+              <Link variant="outline-secondary" onClick={handleCommentsToggle}>
+                {commentsVisible ? "Hide Comments" : "Show Comments"}
+              </Link>
+            </h6>
           </div>
           {error ? (
             <div>Error: {error.message}</div>
           ) : commentsVisible && isLoaded ? (
             commentList !== null ? (
               <>
-              <CommentForm restaurantId={restaurantId}></CommentForm>
                 {commentList.map((unparsedComment) => (
                   <div key={unparsedComment.id}>
                     <Comment unparsedComment={unparsedComment} />
                   </div>
                 ))}
-                
+                <CommentForm restaurantId={restaurantId}></CommentForm>
               </>
             ) : (
               <>
-                <div style={{margin:"50px 0px"}}>No comments yet. Be the first to comment...</div>
+                <div style={{ margin: "30px 0px" }}>
+                  No comments yet. Be the first to comment...
+                </div>
                 <br></br>
                 <CommentForm restaurantId={restaurantId}></CommentForm>
               </>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Restaurant.scss";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
-import RestaurantDetail from "./RestaurantDetail";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
@@ -31,12 +30,9 @@ function Restaurant(props) {
       );
   }, []);
 
-
   const handleClose = () => {
     setIsSent(false);
   };
-
-
 
   return (
     <div className="restaurant">
@@ -60,7 +56,7 @@ function Restaurant(props) {
             <p>Average Score: {averageScore}</p>
           </Card.Text>
           <Link to={"/restaurants/" + restaurantId}>
-            <Button  className="btn-grad">Details</Button>
+            <Button className="btn-grad">Details</Button>
           </Link>
         </Card.Body>
       </Card>

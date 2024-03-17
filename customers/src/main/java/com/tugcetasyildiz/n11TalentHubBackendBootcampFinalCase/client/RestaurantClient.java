@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name ="restaurant", url = "http://localhost:8089/api/v1/restaurants")
+@FeignClient(name ="restaurant", url = "http://restaurants:8089/api/v1/restaurants")
 @Component
 public interface RestaurantClient {
 

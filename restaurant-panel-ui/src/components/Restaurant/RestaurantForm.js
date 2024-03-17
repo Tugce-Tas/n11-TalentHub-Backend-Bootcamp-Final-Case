@@ -55,17 +55,18 @@ function RestaurantForm(props) {
     setIsSent(false);
   };
 
-
   return (
     <div className="restaurant-form">
       <>
-
-        <Alert variant="success" show={isSent} onClose={handleClose} dismissible>
-        <Alert.Heading>Restaurant successfully saved!</Alert.Heading>
-        <p>
-        </p>
-      </Alert>
-
+        <Alert
+          variant="success"
+          show={isSent}
+          onClose={handleClose}
+          dismissible
+        >
+          <Alert.Heading>Restaurant successfully saved!</Alert.Heading>
+          <p></p>
+        </Alert>
 
         <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon1">Name</InputGroup.Text>
@@ -97,8 +98,12 @@ function RestaurantForm(props) {
 
         <Row className="g-2">
           <Col sm={2}>
-            <Button className="btn-grad " variant="primary" onClick={handleSubmit}>
-              Kaydet
+            <Button
+              className="btn-grad "
+              variant="primary"
+              onClick={handleSubmit}
+            >
+              Save
             </Button>
           </Col>
         </Row>

@@ -39,8 +39,14 @@ function CustomerList() {
           </Col>
 
           <Col xs={12} md={9}>
-            <Row style={{ fontSize: "16pt", fontWeight:"bold", padding:"20px auto "}}>
-              <Col sm={6}>Kullanıcı Adı</Col>
+            <Row
+              style={{
+                fontSize: "16pt",
+                fontWeight: "bold",
+                padding: "20px auto ",
+              }}
+            >
+              <Col sm={6}>Username</Col>
 
               <Col sm={2}>Longitude</Col>
 

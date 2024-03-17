@@ -103,13 +103,14 @@ function Comment(props) {
         <Container>
           <Row>
             <Col sm={11}>
-            {updateFormVisible && (
-              <CommentUpdateForm
-                commentId={commentId}
-                text={text}
-                score={score}
-              />
-            )}</Col>
+              {updateFormVisible && (
+                <CommentUpdateForm
+                  commentId={commentId}
+                  text={text}
+                  score={score}
+                />
+              )}
+            </Col>
           </Row>
         </Container>
       </Card>

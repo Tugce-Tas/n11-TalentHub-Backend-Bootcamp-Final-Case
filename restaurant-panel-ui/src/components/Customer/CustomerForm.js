@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Customer.scss";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
-
 import InputGroup from "react-bootstrap/InputGroup";
 
 function CustomerForm(props) {
@@ -32,7 +28,7 @@ function CustomerForm(props) {
       }),
     })
       .then((res) => res.json)
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(true));
   };
 
   const handleSubmit = () => {
@@ -68,12 +64,14 @@ function CustomerForm(props) {
   return (
     <div className="customer">
       <>
-
-        <Alert variant="success" show={isSent} onClose={handleClose} dismissible >
-        <Alert.Heading>Customer successfully saved!</Alert.Heading>
-      
-      </Alert>
-
+        <Alert
+          variant="success"
+          show={isSent}
+          onClose={handleClose}
+          dismissible
+        >
+          <Alert.Heading>Customer successfully saved!</Alert.Heading>
+        </Alert>
 
         <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon1">Name</InputGroup.Text>

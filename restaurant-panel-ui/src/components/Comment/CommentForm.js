@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Comment.scss";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -33,6 +33,8 @@ function CommentForm(props) {
   };
 
   const handleSubmit = () => {
+    console.log(text,score,customerId, restaurantId)
+    
     saveComment();
     setIsSent(true);
     setScore("");
@@ -112,8 +114,12 @@ function CommentForm(props) {
 
         <Row className="g-2">
           <Col sm={2} className="comment-save-button">
-            <Button className="comment-save-button" variant="primary" onClick={handleSubmit}>
-              Kaydet
+            <Button
+              className="comment-save-button"
+              variant="primary"
+              onClick={handleSubmit}
+            >
+              Save
             </Button>
           </Col>
         </Row>

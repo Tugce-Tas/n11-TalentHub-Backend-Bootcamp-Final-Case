@@ -1,7 +1,7 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import {Link} from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
 
 function NavbarContent() {
   return (
@@ -11,9 +11,13 @@ function NavbarContent() {
           <Navbar.Brand href="#home">n11 FinalCase </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link as={Link} to={{pathname : "/customers" }}>Customers</Nav.Link>
-           
-            <Nav.Link as={Link} to={{pathname : "/restaurants" }}>Restaurants</Nav.Link>
+            <Nav.Link as={Link} to={{ pathname: "/customers" }}>
+              Customers
+            </Nav.Link>
+
+            <Nav.Link as={Link} to={{ pathname: "/restaurants" }}>
+              Restaurants
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>

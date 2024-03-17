@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name ="comment", url = "http://localhost:8080/api/v1/comments")
+@FeignClient(name ="comment", url = "http://customers:8080/api/v1/comments")
 public interface CommentClient {
 
     @GetMapping
