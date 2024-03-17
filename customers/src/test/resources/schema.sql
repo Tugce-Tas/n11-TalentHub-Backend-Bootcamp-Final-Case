@@ -30,8 +30,7 @@ CREATE TABLE IF NOT EXISTS restaurant(
                                        longitude double precision,
                                        latitude double precision,
                                        averageScore double precision,
-                                       CONSTRAINT restaurant PRIMARY KEY (id)
+                                       CONSTRAINT restaurant_pkey PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE IF NOT EXISTS RESTAURANT_ID_SEQ;
 

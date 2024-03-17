@@ -16,6 +16,7 @@ import java.util.List;
 public class TestDataGenerator {
     public static CustomerDTO createCustomerDTO() {
         CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(TestConstants.TEST_CUSTOMER_ID);
         customerDTO.setFullName(TestConstants.TEST_CUSTOMER_NAME + " " + TestConstants.TEST_CUSTOMER_SURNAME);
         customerDTO.setLongitude(TestConstants.TEST_CUSTOMER_LONGITUDE);
         customerDTO.setLatitude(TestConstants.TEST_CUSTOMER_LATITUDE);
@@ -76,6 +77,7 @@ public class TestDataGenerator {
 
     public static RestaurantDTO createRestaurantDTO() {
         RestaurantDTO restaurantDTO = RestaurantDTO.builder().build();
+        restaurantDTO.setId(TestConstants.TEST_RESTAURANT_ID);
         restaurantDTO.setName(TestConstants.TEST_RESTAURANT_NAME);
         restaurantDTO.setLongitude(TestConstants.TEST_RESTAURANT_LONGITUDE);
         restaurantDTO.setLatitude(TestConstants.TEST_RESTAURANT_LATITUDE);
@@ -114,6 +116,8 @@ public class TestDataGenerator {
 
     public static CommentDTO createCommentDTO() {
         CommentDTO commentDTO = new CommentDTO();
+        commentDTO.setId(TestConstants.TEST_COMMENT_ID);
+        commentDTO.setCustomerId(TestConstants.TEST_CUSTOMER_ID);
         commentDTO.setScore(TestConstants.TEST_COMMENT_SCORE);
         commentDTO.setText(TestConstants.TEST_COMMENT_TEXT);
         commentDTO.setCustomerName(TestConstants.TEST_CUSTOMER_NAME + " " + TestConstants.TEST_CUSTOMER_SURNAME);

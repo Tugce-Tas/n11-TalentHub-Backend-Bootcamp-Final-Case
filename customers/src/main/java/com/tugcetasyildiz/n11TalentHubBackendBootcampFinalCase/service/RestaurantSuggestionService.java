@@ -52,7 +52,7 @@ public class RestaurantSuggestionService {
                 .toList();
     }
 
-    private static Double calculateDistance(Customer customer, RestaurantDTO restaurant) {
+    protected static Double calculateDistance(Customer customer, RestaurantDTO restaurant) {
 
         double latDistance = Math.toRadians(customer.getLatitude() - restaurant.getLatitude());
         double lonDistance = Math.toRadians(customer.getLongitude() - restaurant.getLongitude());
@@ -66,7 +66,7 @@ public class RestaurantSuggestionService {
         return RADIUS_OF_EARTH * c;
     }
 
-    private Double getScore(Customer customer, RestaurantDTO restaurant) {
+    protected Double getScore(Customer customer, RestaurantDTO restaurant) {
         double proximityScore = (10 - calculateDistance(customer, restaurant)) ;
         double commentScore = (restaurant.getAverageScore()) * 2;
         return (proximityScore * 0.3) + (commentScore * 0.7);
