@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.service;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import com.tugcetasyildiz.restaurants.dao.RestaurantRepository;
 import com.tugcetasyildiz.restaurants.dto.RestaurantDTO;
 import com.tugcetasyildiz.restaurants.entity.Restaurant;
@@ -55,7 +55,7 @@ public class RestaurantService {
         restaurantRepository.deleteById(restaurantId);
     }
 
-    public void updateCommentsAndScore(String restaurantId, ArrayList<CommentRestaurantResponseDTO> commentDTOList) {
+    public void updateCommentsAndScore(String restaurantId, ArrayList<CommentDTO> commentDTOList) {
 
         double totalScore = commentDTOList.stream()
                 .mapToDouble(comment -> comment.getScore().getValue())

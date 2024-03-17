@@ -1,7 +1,7 @@
 package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client;
 
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client.model.RestaurantDTO;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class RestaurantClientService {
         }
     }
 
-    public void updateRestaurantByCommentsAndScore(String restaurantId, List<CommentRestaurantResponseDTO> commentDTOList) {
+    public void updateRestaurantByCommentsAndScore(String restaurantId, List<CommentDTO> commentDTOList) {
         try {
             restaurantClient.updateCommentsAndScore(restaurantId,commentDTOList);
         } catch (Exception e) {

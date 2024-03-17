@@ -5,12 +5,11 @@ import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client.model.Rest
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dao.CommentRepository;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dao.CustomerRepository;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentDTO;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentRestaurantResponseDTO;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.Customer;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.entity.Comment;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCommentIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCustomerIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidRestaurantIdException;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.InvalidCommentIdException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.exception.ItemNotFoundException;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.exceptionhandling.message.EnumErrorMessage;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.BaseService;
@@ -20,7 +19,6 @@ import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.request.updatereq
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,8 +96,8 @@ public class CommentService extends BaseService<
         restaurantClientService.updateRestaurantByCommentsAndScore(restaurantId, getAllByRestaurantId(restaurantId));
     }
 
-    public List<CommentRestaurantResponseDTO> getAllByRestaurantId(String restaurantId) {
+    public List<CommentDTO> getAllByRestaurantId(String restaurantId) {
         List<Comment> allByRestaurantId = commentRepository.findAllByRestaurantId(restaurantId);
-        return CommentMapper.INSTANCE.convertToCommentDTOsForRestaurant(allByRestaurantId);
+        return CommentMapper.INSTANCE.INSTANCE.convertToDTOs(allByRestaurantId);
     }
 }

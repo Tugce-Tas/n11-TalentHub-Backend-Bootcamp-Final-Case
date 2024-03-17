@@ -1,7 +1,7 @@
 package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client;
 
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.client.model.RestaurantDTO;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -20,5 +20,5 @@ public interface RestaurantClient {
     RestaurantDTO getRestaurantById(@PathVariable String restaurantId);
 
     @PostMapping("/{restaurantId}/score-and-comments")
-    void updateCommentsAndScore(@PathVariable String restaurantId, @RequestBody List<CommentRestaurantResponseDTO> commentDTOList);
+    void updateCommentsAndScore(@PathVariable String restaurantId, @RequestBody List<CommentDTO> commentDTOList);
 }

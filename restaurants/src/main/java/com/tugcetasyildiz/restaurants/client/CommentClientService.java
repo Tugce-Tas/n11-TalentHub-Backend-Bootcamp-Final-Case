@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.client;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import com.tugcetasyildiz.restaurants.dao.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ public class CommentClientService {
     private final CommentClient commentClient;
     private final RestaurantRepository restaurantRepository;
 
-    public List<CommentRestaurantResponseDTO> getAllRestaurants() {
+    public List<CommentDTO> getAllRestaurants() {
         try {
         return commentClient.getAll();
 
@@ -24,7 +24,7 @@ public class CommentClientService {
             return null;
         }
     }
-    public List<CommentRestaurantResponseDTO> getAllByRestaurantId(String restaurantId) {
+    public List<CommentDTO> getAllByRestaurantId(String restaurantId) {
         return commentClient.getAllByRestaurantId(restaurantId);
     }
 

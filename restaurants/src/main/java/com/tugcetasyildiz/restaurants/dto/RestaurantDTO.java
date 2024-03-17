@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.dto;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,5 +13,5 @@ public class RestaurantDTO {
     private Double longitude;
     private Double latitude;
     private Double averageScore;
-    private ArrayList<CommentRestaurantResponseDTO> commentList;
+    private ArrayList<CommentDTO> commentList;
 }

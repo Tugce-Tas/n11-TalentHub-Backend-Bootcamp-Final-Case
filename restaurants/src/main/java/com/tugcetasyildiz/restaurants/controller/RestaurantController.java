@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.controller;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import com.tugcetasyildiz.restaurants.dto.RestaurantDTO;
 import com.tugcetasyildiz.restaurants.request.RestaurantSaveRequest;
 import com.tugcetasyildiz.restaurants.request.RestaurantUpdateRequest;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/restaurants")
@@ -57,7 +56,7 @@ public class RestaurantController {
     }
 
     @PostMapping("/{restaurantId}/score-and-comments")
-    public void updateCommentsAndScore(@PathVariable String restaurantId, @RequestBody ArrayList<CommentRestaurantResponseDTO> commentDTOList) {
+    public void updateCommentsAndScore(@PathVariable String restaurantId, @RequestBody ArrayList<CommentDTO> commentDTOList) {
         restaurantService.updateCommentsAndScore(restaurantId, commentDTOList);
     }
 

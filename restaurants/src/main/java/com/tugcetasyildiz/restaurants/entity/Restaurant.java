@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.entity;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import lombok.Data;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
@@ -10,7 +10,6 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @SolrDocument(solrCoreName = "n11_restaurants")
@@ -33,7 +32,7 @@ public class Restaurant implements Serializable{
     private Double latitude;
 
     @Field
-    private ArrayList<CommentRestaurantResponseDTO> commentList;
+    private ArrayList<CommentDTO> commentList;
 
     @Indexed(name = "AVERAGE_SCORE", type = "pdouble")
     private Double averageScore = 0.0;

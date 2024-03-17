@@ -1,6 +1,6 @@
 package com.tugcetasyildiz.restaurants.client;
 
-import com.tugcetasyildiz.restaurants.client.model.CommentRestaurantResponseDTO;
+import com.tugcetasyildiz.restaurants.client.model.CommentDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +11,9 @@ import java.util.List;
 public interface CommentClient {
 
     @GetMapping
-    List<CommentRestaurantResponseDTO> getAll();
+    List<CommentDTO> getAll();
 
     @GetMapping("/with-restaurant-id/{restaurantId}")
-    List<CommentRestaurantResponseDTO> getAllByRestaurantId(@PathVariable String restaurantId);
+    List<CommentDTO> getAllByRestaurantId(@PathVariable String restaurantId);
 
 }

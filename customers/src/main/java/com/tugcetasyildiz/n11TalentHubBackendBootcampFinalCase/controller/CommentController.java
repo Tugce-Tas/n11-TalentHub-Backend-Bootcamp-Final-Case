@@ -1,7 +1,6 @@
 package com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.controller;
 
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentDTO;
-import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.dto.CommentRestaurantResponseDTO;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.general.RestResponse;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.request.saverequest.CommentSaveRequest;
 import com.tugcetasyildiz.n11TalentHubBackendBootcampFinalCase.request.updaterequest.CommentUpdateRequest;
@@ -55,8 +54,8 @@ public class CommentController {
 
     @GetMapping("/with-restaurant-id/{restaurantId}")
     @Operation(summary = "Get all comments by restaurant id")
-    public ResponseEntity<RestResponse<List<CommentRestaurantResponseDTO>>> getAllByRestaurantId(@PathVariable String restaurantId) {
-        List<CommentRestaurantResponseDTO> allByRestaurantId = commentService.getAllByRestaurantId(restaurantId);
+    public ResponseEntity<RestResponse<List<CommentDTO>>> getAllByRestaurantId(@PathVariable String restaurantId) {
+        List<CommentDTO> allByRestaurantId = commentService.getAllByRestaurantId(restaurantId);
         return ResponseEntity.ok(RestResponse.of(allByRestaurantId));
     }
 

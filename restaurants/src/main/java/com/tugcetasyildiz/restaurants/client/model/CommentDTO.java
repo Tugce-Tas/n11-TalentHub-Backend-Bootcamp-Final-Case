@@ -6,7 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Data
-public class CommentRestaurantResponseDTO implements Serializable {
+public class CommentDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -4662475407732921681L;
     private Long id;
