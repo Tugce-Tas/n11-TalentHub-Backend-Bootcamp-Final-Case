@@ -10,3 +10,8 @@ services:
       command:
       - solr-precreate
       - n11_restaurants
+      networks:
+        - restaurant-panel
+networks:
+  restaurant-panel:
+    driver: bridge
