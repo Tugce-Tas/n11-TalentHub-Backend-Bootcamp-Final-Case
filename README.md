@@ -71,12 +71,16 @@ After these steps completed, UI project can be started locally. First, in the pa
 
 ![8](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/896a285f-57ba-4374-9201-d146e7d6d238)
 
+![9](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/1b4da13f-b5e9-414d-94e9-a09f7ead66a5)
+
+![10](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/88cfe681-0247-48eb-ad03-25badf8ba7ce)
 
 
 ![12](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/7a73fb8d-4fa0-4619-97d0-f7f24603af68)
 
 
 
+![13](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/5d71b1e8-be45-41a6-a6cf-9f7ffc459a90)
 
 
 
