@@ -58,16 +58,16 @@ Application will be available on port **8082**
 After these steps completed, UI project can be started locally. First, in the path of UI project, 
 `npm install` command is executed. After that, `npm start` command will start React project.
 
+
 ![diyagram drawio](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/97bb9ce6-fc3e-45c1-a622-ca03b3b3f905)
 
 ![3](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/dfbd8199-8c88-4d81-8c2f-b3537cc19e1f)
 
+![4](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/0017e24a-c306-40da-bbff-fd5a9e3b6d13)
 
 ![6](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/4c4481ec-1e14-40f5-819a-e5490857fe22)
 
-
 ![7](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/8b8c3e8e-8ca6-431d-98e9-abb519667f22)
-
 
 ![8](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/896a285f-57ba-4374-9201-d146e7d6d238)
 
@@ -75,10 +75,7 @@ After these steps completed, UI project can be started locally. First, in the pa
 
 ![10](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/88cfe681-0247-48eb-ad03-25badf8ba7ce)
 
-
 ![12](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/7a73fb8d-4fa0-4619-97d0-f7f24603af68)
-
-
 
 ![13](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/5d71b1e8-be45-41a6-a6cf-9f7ffc459a90)
 
