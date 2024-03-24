@@ -54,9 +54,13 @@ docker build -t n11/logger .
 docker run -d --name logger --network infra_setup_restaurant-panel -p 8082:8082 n11/logger
 ```
 Application will be available on port **8082**
+
 ## UI
 After these steps completed, UI project can be started locally. First, in the path of UI project, 
 `npm install` command is executed. After that, `npm start` command will start React project.
+
+## Loom Video Link
+https://www.loom.com/share/8ae68b3b2c5a499389ae2a431f48fdcb
 
 
 ![diyagram drawio](https://github.com/Tugce-Tas/n11-TalentHub-Backend-Bootcamp-Final-Case/assets/110787805/97bb9ce6-fc3e-45c1-a622-ca03b3b3f905)
